@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Interactive Background</title>
+  </head>
+  <body>
+    <canvas id="bg-canvas"></canvas>
+    
+    <header class="top-header">
+      <div class="glass-box shine-border header-left">
+        <div class="name-text">
+          <span class="initial">A</span><span class="hidden-text"><span class="hidden-inner">aditya </span></span>
+          <span class="initial">S</span><span class="hidden-text"><span class="hidden-inner"> </span></span>
+          <span class="initial">P</span><span class="hidden-text"><span class="hidden-inner">rabhu</span></span>
+        </div>
+      </div>
+      
+      <div class="glass-box shine-border header-right">
+        <nav class="header-nav">
+          <a href="#home" class="nav-item">Home</a>
+          <span class="nav-sep"></span>
+          <a href="#about" class="nav-item">About</a>
+          <span class="nav-sep"></span>
+          <a href="#projects" class="nav-item">Projects</a>
+          <span class="nav-sep"></span>
+          <a href="#contact" class="nav-item">Contact</a>
+        </nav>
+        <div class="header-divider"></div>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+          <svg class="sun-and-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path class="moon-icon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            <g class="sun-icon">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </g>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="app" class="content-wrapper">
+      <section id="home" class="hero-container">
+        <div class="glass-section hero-card">
+          <h1 class="hero-title">Hi, I'm <span class="highlight">Aaditya</span>.</h1>
+          <p class="hero-subtitle">Creative Developer & Designer</p>
+          <div class="hero-actions">
+            <a href="#projects" class="glass-btn shine-border">View Projects</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="glass-section about">
+        <div class="about-content">
+          <h2 class="section-title">About Me</h2>
+          <p>I build immersive, high-performance web experiences with a focus on modern aesthetics, interactive design, and glassmorphism. Passionate about bridging the gap between engineering and design.</p>
+        </div>
+        <div class="skills-grid">
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">React</span>
+          <span class="skill-pill">CSS/Tailwind</span>
+          <span class="skill-pill">Three.js</span>
+          <span class="skill-pill">Framer Motion</span>
+          <span class="skill-pill">UI/UX Design</span>
+        </div>
+      </section>
+
+      <section id="projects" class="projects-section">
+        <div class="section-header glass-section">
+          <h2 class="section-title">Selected Works</h2>
+        </div>
+        <div class="masonry-grid">
+          <a href="#" class="project-card glass-box shine-border">
+            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop" alt="Project 1" class="project-img">
+            <div class="project-info">
+              <h3>Neural Network Dashboard</h3>
+              <p>Web App • Data Viz</p>
+            </div>
+          </a>
+          <a href="#" class="project-card glass-box shine-border masonry-tall">
+            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600&auto=format&fit=crop" alt="Project 2" class="project-img">
+            <div class="project-info">
+              <h3>Quantum Interface</h3>
+              <p>System UI • WebGL</p>
+            </div>
+          </a>
+          <a href="#" class="project-card glass-box shine-border">
+            <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=600&auto=format&fit=crop" alt="Project 3" class="project-img">
+            <div class="project-info">
+              <h3>Holographic Engine</h3>
+              <p>Library • Open Source</p>
+            </div>
+          </a>
+          <a href="#" class="project-card glass-box shine-border masonry-tall">
+            <img src="https://images.unsplash.com/photo-1614729939124-032f0b56c9ce?q=80&w=600&auto=format&fit=crop" alt="Project 4" class="project-img">
+            <div class="project-info">
+              <h3>Ethereal Space</h3>
+              <p>E-commerce • 3D</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section id="contact" class="glass-section contact">
+        <h2 class="section-title">Let's Connect</h2>
+        <p>I'm currently available for freelance work and exciting opportunities.</p>
+        <form class="contact-form">
+          <input type="text" class="glass-input" placeholder="Your Name" required>
+          <input type="email" class="glass-input" placeholder="Your Email" required>
+          <textarea class="glass-input" rows="4" placeholder="Your Message" required></textarea>
+          <button type="submit" class="glass-btn shine-border">Send Message</button>
+        </form>
+      </section>
+      
+      <footer class="site-footer">
+        <p>© 2026 Aaditya Prabhu. All rights reserved.</p>
+      </footer>
+    </main>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
