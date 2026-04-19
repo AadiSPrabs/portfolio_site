@@ -18,8 +18,10 @@ window.addEventListener('mousemove', (e) => {
 
 // Handle window resize
 function resize() {
-  width = window.innerWidth;
-  height = window.innerHeight;
+  width = document.documentElement.clientWidth || window.innerWidth;
+  height = document.documentElement.clientHeight || window.innerHeight;
+  canvas.style.width = width + 'px';
+  canvas.style.height = height + 'px';
   canvas.width = width * window.devicePixelRatio;
   canvas.height = height * window.devicePixelRatio;
   ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
@@ -30,16 +32,16 @@ function resize() {
 function initGrid() {
   points = [];
   
-  // Calculate offset to perfectly center the grid
-  const offsetX = (width % spacing) / 2;
-  const offsetY = (height % spacing) / 2;
+  // Lock grid directly to origin so there's no shifting margins at the left/top edges
+  const offsetX = 0;
+  const offsetY = 0;
   
-  const cols = Math.floor(width / spacing) + 1;
-  const rows = Math.floor(height / spacing) + 1;
+  const cols = Math.ceil(width / spacing) + 2;
+  const rows = Math.ceil(height / spacing) + 2;
   
-  // Start from -1 to pad the edges
-  for (let r = -1; r <= rows; r++) {
-    for (let c = -1; c <= cols; c++) {
+  // Start further back to ensure complete coverage at the screen edges
+  for (let r = -2; r <= rows; r++) {
+    for (let c = -2; c <= cols; c++) {
       points.push({
         x: offsetX + c * spacing,
         y: offsetY + r * spacing,
@@ -145,3 +147,4 @@ if (themeToggle) {
     document.documentElement.setAttribute('data-theme', newTheme);
   });
 }
+
