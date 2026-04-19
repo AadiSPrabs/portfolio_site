@@ -10,11 +10,55 @@ const spacing = 40;
 const radius = 150;
 const lerpFactor = 0.1;
 
-// Handle mouse move
+// Detect touch device
+const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+// Auto-cursor state for mobile
+let autoCursor = { x: 0, y: 0, time: 0 };
+
+// Handle mouse move (desktop)
 window.addEventListener('mousemove', (e) => {
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
+  if (!isTouchDevice) {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  }
 });
+
+// Handle touch move (mobile — direct interaction)
+window.addEventListener('touchmove', (e) => {
+  const touch = e.touches[0];
+  if (touch) {
+    mouse.x = touch.clientX;
+    mouse.y = touch.clientY;
+  }
+}, { passive: true });
+
+// Reset to auto-cursor when touch ends
+window.addEventListener('touchend', () => {
+  mouse.x = autoCursor.x;
+  mouse.y = autoCursor.y;
+});
+
+// Simulate autonomous cursor movement on mobile using Lissajous curves
+function updateAutoCursor() {
+  if (!isTouchDevice) return;
+
+  autoCursor.time += 0.004; // Slow, dreamy drift
+  const t = autoCursor.time;
+
+  // Lissajous figure — creates a smooth, organic loop
+  const cx = width / 2;
+  const cy = height / 2;
+  const rx = width * 0.35;
+  const ry = height * 0.35;
+
+  autoCursor.x = cx + Math.sin(t * 1.3) * rx;
+  autoCursor.y = cy + Math.cos(t * 0.9) * ry;
+
+  // Only apply if user isn't actively touching
+  mouse.x = lerp(mouse.x, autoCursor.x, 0.02);
+  mouse.y = lerp(mouse.y, autoCursor.y, 0.02);
+}
 
 // Handle window resize
 function resize() {
@@ -88,6 +132,7 @@ function drawCross(x, y, size, rotation, opacity, glow, colorRgb) {
 }
 
 function update() {
+  updateAutoCursor();
   ctx.clearRect(0, 0, width, height);
   const theme = document.documentElement.getAttribute('data-theme');
   const colorRgb = theme === 'light' ? '0, 0, 0' : '255, 255, 255';
@@ -148,3 +193,51 @@ if (themeToggle) {
   });
 }
 
+// Smooth scroll for nav links
+document.querySelectorAll('.nav-item[href^="#"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Reveal on scroll
+const revealTargets = document.querySelectorAll('section');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('section-visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+revealTargets.forEach(section => {
+  section.classList.add('section-hidden');
+  revealObserver.observe(section);
+});
+
+// Auto-expand name on mobile when hero section is visible
+if (isTouchDevice) {
+  const heroSection = document.getElementById('home');
+  const headerLeft = document.querySelector('.header-left');
+
+  if (heroSection && headerLeft) {
+    // Start expanded since hero is visible on load
+    headerLeft.classList.add('name-expanded');
+
+    const nameObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          headerLeft.classList.add('name-expanded');
+        } else {
+          headerLeft.classList.remove('name-expanded');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    nameObserver.observe(heroSection);
+  }
+}
