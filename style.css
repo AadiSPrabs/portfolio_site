@@ -588,7 +588,7 @@ p {
   position: relative;
   padding: 48px;
   border-radius: 24px;
-  background: rgba(10, 10, 10, 0.65);
+  background: rgba(10, 10, 10, 0.45);
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -602,7 +602,7 @@ p {
 }
 
 .glass-panel-card:hover {
-  background: rgba(10, 10, 10, 0.7);
+  background: rgba(10, 10, 10, 0.5);
   border-color: rgba(255, 255, 255, 0.18);
   box-shadow:
     0 12px 40px rgba(0, 0, 0, 0.35),
@@ -610,7 +610,7 @@ p {
 }
 
 [data-theme="light"] .glass-panel-card {
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.4);
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.08),
@@ -618,7 +618,7 @@ p {
 }
 
 [data-theme="light"] .glass-panel-card:hover {
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.5);
   border-color: rgba(0, 0, 0, 0.15);
   box-shadow:
     0 12px 40px rgba(0, 0, 0, 0.1),
