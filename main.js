@@ -154,9 +154,6 @@ function update() {
       const angleToMouse = Math.atan2(dy, dx);
       
       // If we want it to literally "into an x symbol", it's 45deg (PI/4).
-      // But user said "rotate in the direction in their axis towards the mouse pointer INTO an x symbol"
-      // This implies the transformation to 'x' is linked to pointing at the mouse.
-      // Let's combine: base rotation towards mouse + extra 45deg to make it look like 'x' relative to the vector.
       targetRotation = angleToMouse + (Math.PI / 4) * factor;
       
       targetOpacity = 0.2 + 0.8 * factor;
@@ -240,4 +237,79 @@ if (isTouchDevice) {
 
     nameObserver.observe(heroSection);
   }
+}
+
+// Floating Project Preview Logic
+const projectPreview = document.getElementById('project-preview');
+const projectPreviewImg = projectPreview?.querySelector('.project-preview-image');
+const projectCards = document.querySelectorAll('.project-card[data-images]');
+
+if (projectPreview && projectPreviewImg && !isTouchDevice) {
+  let isHovering = false;
+  let currentX = 0;
+  let currentY = 0;
+  let targetX = 0;
+  let targetY = 0;
+  let previewInterval;
+  let currentImageIndex = 0;
+  
+  // Smooth tracking using lerp
+  function updatePreviewPosition() {
+    if (!isHovering) return;
+    
+    currentX = lerp(currentX, targetX, 0.15);
+    currentY = lerp(currentY, targetY, 0.15);
+    
+    projectPreview.style.left = `${currentX}px`;
+    projectPreview.style.top = `${currentY}px`;
+    
+    requestAnimationFrame(updatePreviewPosition);
+  }
+
+  projectCards.forEach(card => {
+    card.addEventListener('mouseenter', (e) => {
+      const imgData = card.getAttribute('data-images');
+      if (imgData) {
+        const images = imgData.split(',');
+        currentImageIndex = 0;
+        projectPreviewImg.src = images[currentImageIndex];
+        projectPreview.classList.add('active');
+        
+        // Instantly set position on initial enter to avoid flying in from corner
+        targetX = e.clientX;
+        targetY = e.clientY;
+        if (!isHovering) {
+          currentX = targetX;
+          currentY = targetY;
+          projectPreview.style.left = `${currentX}px`;
+          projectPreview.style.top = `${currentY}px`;
+        }
+        
+        if (images.length > 1) {
+          previewInterval = setInterval(() => {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            projectPreviewImg.src = images[currentImageIndex];
+          }, 1500); // Cycle every 1.5s
+        }
+        
+        isHovering = true;
+        requestAnimationFrame(updatePreviewPosition);
+      }
+    });
+
+    card.addEventListener('mousemove', (e) => {
+      // Add slight offset so it doesn't block the cursor
+      targetX = e.clientX + 20; 
+      targetY = e.clientY + 20;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      projectPreview.classList.remove('active');
+      isHovering = false;
+      if (previewInterval) {
+        clearInterval(previewInterval);
+        previewInterval = null;
+      }
+    });
+  });
 }

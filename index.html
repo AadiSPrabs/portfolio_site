@@ -59,6 +59,12 @@
       <section id="home" class="hero-container">
         <h1 class="hero-title">Hi, I'm <span class="highlight">Aaditya</span></h1>
         <p class="hero-subtitle">Undergraduate student & aspiring developer.<br/>Building things, one commit at a time.</p>
+        <div class="hero-actions">
+          <a href="#" class="primary-btn glass-box shine-border">
+            <span>Download Resume</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </a>
+        </div>
       </section>
 
       <!-- About -->
@@ -70,19 +76,98 @@
         </div>
       </section>
 
+      <!-- Skills -->
+      <section id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-badge glass-box" style="animation-delay: 0.1s;">
+            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            React / Next.js
+          </div>
+          <div class="skill-badge glass-box" style="animation-delay: 0.8s;">
+            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            TypeScript
+          </div>
+          <div class="skill-badge glass-box" style="animation-delay: 0.4s;">
+            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            Node.js
+          </div>
+          <div class="skill-badge glass-box" style="animation-delay: 1.2s;">
+            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Python
+          </div>
+          <div class="skill-badge glass-box" style="animation-delay: 0.6s;">
+            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+            Docker
+          </div>
+          <div class="skill-badge glass-box" style="animation-delay: 0.2s;">
+            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+            Tailwind CSS
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+          
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="glass-panel-card timeline-content">
+              <span class="timeline-date">2024 - 2028</span>
+              <h3 class="timeline-role">BTech Computer Science</h3>
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                <img src="https://www.dsu.edu.in/templates/sj_university2/images/styling/default/logo.png" alt="DSU Logo" style="height: 40px; background: rgba(255,255,255,0.9); padding: 4px; border-radius: 6px;">
+                <p class="timeline-company" style="margin-bottom: 0;">Dayananda Sagar University</p>
+              </div>
+              <p class="timeline-desc">Focusing on algorithms, distributed systems, and artificial intelligence. Active member of the university coding club and open-source contributor.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Projects -->
       <section id="projects">
         <h2 class="section-title">Projects</h2>
-        <div class="glass-panel-card projects-placeholder">
-          <div class="coming-soon-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-              <path d="M2 17l10 5 10-5"/>
-              <path d="M2 12l10 5 10-5"/>
-            </svg>
+        <div class="projects-grid">
+          
+          <a href="https://github.com/AadiSPrabs/JellySpot_React" target="_blank" rel="noopener noreferrer" class="glass-panel-card project-card" data-images="https://raw.githubusercontent.com/AadiSPrabs/JellySpot_React/master/screenshots/now_playing.jpeg,https://raw.githubusercontent.com/AadiSPrabs/JellySpot_React/master/screenshots/home_screen.jpeg,https://raw.githubusercontent.com/AadiSPrabs/JellySpot_React/master/screenshots/library_screen.jpeg,https://raw.githubusercontent.com/AadiSPrabs/JellySpot_React/master/screenshots/lyrics_view.jpeg,https://raw.githubusercontent.com/AadiSPrabs/JellySpot_React/master/screenshots/downloads_screen.jpeg">
+            <div class="project-title">
+              JellySpot
+              <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+            </div>
+            <p class="project-desc">Yet another beautiful and responsive music client for Jellyfin.</p>
+            <div class="project-tags">
+              <span class="project-tag">React</span>
+              <span class="project-tag">Jellyfin</span>
+            </div>
+          </a>
+
+          <a href="https://github.com/AadiSPrabs/ui_gotenberg" target="_blank" rel="noopener noreferrer" class="glass-panel-card project-card" data-images="https://raw.githubusercontent.com/AadiSPrabs/ui_gotenberg/main/ss.PNG">
+            <div class="project-title">
+              UI Gotenberg
+              <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+            </div>
+            <p class="project-desc">A simple, self-hosted frontend for the Gotenberg file conversion API.</p>
+            <div class="project-tags">
+              <span class="project-tag">Self-hosted</span>
+              <span class="project-tag">API</span>
+            </div>
+          </a>
+
+          <div class="glass-panel-card project-card">
+            <div class="project-title">
+              Vyrd <span style="font-size: 0.9rem; font-weight: 500; color: var(--text-muted);">(Coming Soon)</span>
+              <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+            </div>
+            <p class="project-desc">A tactile, minimalist math puzzle app with a bespoke puzzle engine and dark mode aesthetics.</p>
+            <div class="project-tags">
+              <span class="project-tag">Mobile App</span>
+              <span class="project-tag">Game Design</span>
+            </div>
           </div>
-          <h3 class="coming-soon-text">Coming Soon</h3>
-          <p class="coming-soon-sub">Exciting projects are in the works. Stay tuned.</p>
+
         </div>
       </section>
 
@@ -90,17 +175,45 @@
       <section id="contact">
         <h2 class="section-title">Contact</h2>
         <div class="glass-panel-card contact-card">
-          <p>Want to connect? Find me on GitHub.</p>
-          <a href="https://github.com/AadiSPrabs" target="_blank" rel="noopener noreferrer" class="github-link">
-            <svg class="github-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-            <span>AadiSPrabs</span>
-          </a>
+          <p>Let's build something great together. Feel free to reach out via any of the platforms below.</p>
+          <div class="social-grid">
+            <a href="https://github.com/AadiSPrabs" target="_blank" rel="noopener noreferrer" class="social-link glass-box shine-border">
+              <svg class="social-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              <span>GitHub</span>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="social-link glass-box shine-border">
+              <svg class="social-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              <span>LinkedIn</span>
+            </a>
+            <a href="#" class="social-link glass-box shine-border">
+              <svg class="social-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>Email</span>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="social-link glass-box shine-border">
+              <svg class="social-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+              <span>Twitter</span>
+            </a>
+          </div>
         </div>
       </section>
 
     </main>
+
+    <!-- Floating Project Preview -->
+    <div class="project-preview-container" id="project-preview">
+      <img class="project-preview-image" src="" alt="Project Preview">
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p>© 2026 Aaditya S Prabhu.</p>
+        <p>Built with <span style="color: #ff4757;">&hearts;</span> and Vanilla JS.</p>
+      </div>
+    </footer>
+
     <script type="module" src="/main.js"></script>
   </body>
 </html>
