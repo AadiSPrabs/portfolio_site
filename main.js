@@ -10,6 +10,12 @@ const spacing = 40;
 const radius = 150;
 const lerpFactor = 0.1;
 
+let isPaused = false;
+
+document.addEventListener('visibilitychange', () => {
+  isPaused = document.hidden;
+});
+
 // Detect touch device
 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
@@ -132,6 +138,10 @@ function drawCross(x, y, size, rotation, opacity, glow, colorRgb) {
 }
 
 function update() {
+  if (isPaused) {
+    requestAnimationFrame(update);
+    return;
+  }
   updateAutoCursor();
   ctx.clearRect(0, 0, width, height);
   const theme = document.documentElement.getAttribute('data-theme');
@@ -274,8 +284,7 @@ if (projectPreview && projectPreviewImg && !isTouchDevice) {
         currentImageIndex = 0;
         projectPreviewImg.src = images[currentImageIndex];
         projectPreview.classList.add('active');
-        
-        // Instantly set position on initial enter to avoid flying in from corner
+
         targetX = e.clientX;
         targetY = e.clientY;
         if (!isHovering) {
@@ -284,14 +293,15 @@ if (projectPreview && projectPreviewImg && !isTouchDevice) {
           projectPreview.style.left = `${currentX}px`;
           projectPreview.style.top = `${currentY}px`;
         }
-        
+
         if (images.length > 1) {
           previewInterval = setInterval(() => {
+            if (isPaused) return;
             currentImageIndex = (currentImageIndex + 1) % images.length;
             projectPreviewImg.src = images[currentImageIndex];
-          }, 1500); // Cycle every 1.5s
+          }, 1500);
         }
-        
+
         isHovering = true;
         requestAnimationFrame(updatePreviewPosition);
       }

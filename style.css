@@ -320,187 +320,16 @@ body {
 }
 
 /* --- Vertical Flow Navigation --- */
-.flow-nav {
-  position: fixed !important;
-  /* Ensure it stays fixed even with glass-track utilities */
-  right: 48px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  z-index: 100;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease;
-}
-
-.flow-nav.nav-visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.flow-dot {
-  width: 10px;
-  height: 10px;
-  background: var(--glass-border);
-  border-radius: 50%;
-  position: relative;
-  z-index: 2;
-  margin: 12px 0;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.flow-dot:hover,
-.flow-dot.active {
-  background: var(--text-main);
-  transform: scale(1.3);
-}
-
-.dot-label {
-  position: absolute;
-  right: 24px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--text-main);
-  font-size: 0.8rem;
-  font-weight: 500;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  transform: translateY(-50%) translateX(10px);
-}
-
-.flow-dot:hover .dot-label,
-.flow-dot.active .dot-label {
-  opacity: 1;
-  transform: translateY(-50%) translateX(0);
-}
+/* (removed unused .flow-nav, .flow-dot, .dot-label and variants) */
 
 /* --- Reveal Animations --- */
-.reveal-item {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
+/* (removed unused .reveal-item, .reveal-visible) */
 
-.reveal-item.reveal-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* --- Main Content & Layout --- */
-/* --- Liquid Panel Component (Glassmorphism 2.0) --- */
-.liquid-panel {
-  position: relative;
-  border-radius: 32px;
-  padding: 48px;
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(12px) saturate(150%) brightness(1.2);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.2),
-    inset 0 1px 1px rgba(255, 255, 255, 0.2),
-    inset 0 -1px 1px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 1;
-  box-sizing: border-box;
-}
-
-[data-theme="light"] .liquid-panel {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px) saturate(150%) brightness(1);
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.05),
-    inset 0 1px 1px rgba(255, 255, 255, 0.8),
-    inset 0 -1px 1px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-.liquid-panel::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 32px;
-  box-shadow: inset 0 6px 16px rgba(255, 255, 255, 0.15);
-  pointer-events: none;
-  z-index: -1;
-}
-
-/* Chrome-specific Displacement Filter */
-.is-chrome .liquid-panel {
-  backdrop-filter: url(#liquid-glass-refraction) blur(4px) saturate(150%);
-}
+/* --- Liquid Panel Component --- */
+/* (removed unused .liquid-panel and variants) */
 
 /* --- Physical Glass Slider Components --- */
-.glass-track {
-  position: relative;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 99px;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  display: flex;
-  padding: 4px;
-  /* inner padding gives the thumb room */
-}
-
-[data-theme="light"] .glass-track {
-  background: rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.header-nav.glass-track {
-  align-items: center;
-}
-
-.flow-nav.glass-track {
-  align-items: center;
-  flex-direction: column;
-}
-
-.glass-thumb {
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(16px) saturate(200%);
-  border-radius: 99px;
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.2),
-    inset 0 2px 4px rgba(255, 255, 255, 0.8),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  /* The thumb moves dynamically via transform. Width is managed via JS */
-  height: calc(100% - 8px);
-  z-index: 1;
-  /* under the text */
-  cursor: grab;
-  /* Transition handles smooth gliding when clicked/auto-scrolled */
-  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), width 0.4s cubic-bezier(0.25, 1, 0.5, 1), height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.flow-nav .glass-thumb {
-  /* The sidebar thumb modifies width visually, but wait, if it's a circle... */
-  width: calc(100% - 8px);
-  /* Full width of the narrow track */
-  height: auto;
-  aspect-ratio: 1;
-  /* Make it a circle */
-}
-
-.glass-thumb:active {
-  cursor: grabbing;
-}
-
-.glass-thumb.is-dragging {
-  transition: none;
-  /* Disable transition during drag for instant physics */
-}
+/* (removed unused .glass-track, .glass-thumb and variants) */
 
 /* --- Main Content & Layout --- */
 .content-wrapper {
@@ -1017,23 +846,6 @@ p {
   .glass-panel-card p {
     font-size: 0.95rem;
     line-height: 1.6;
-  }
-
-  .coming-soon-text {
-    font-size: 1.4rem;
-  }
-
-  .coming-soon-sub {
-    font-size: 0.9rem;
-  }
-
-  .coming-soon-icon svg {
-    width: 36px;
-    height: 36px;
-  }
-
-  .projects-placeholder {
-    min-height: 160px;
   }
 
   .github-link {
