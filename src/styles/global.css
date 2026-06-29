@@ -3,7 +3,7 @@ html {
 }
 
 :root {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -82,7 +82,6 @@ body {
   width: 100vw;
   height: 100vh;
   z-index: 0;
-  /* Changed from -1 to 0 */
   pointer-events: none;
   background-color: var(--canvas-bg);
   transition: background-color 0.5s ease;
@@ -92,7 +91,6 @@ body {
   position: fixed;
   inset: 0;
   z-index: 1;
-  /* Sits directly above canvas */
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
   -webkit-backdrop-filter: blur(1px);
@@ -101,13 +99,9 @@ body {
 
 #app {
   position: relative;
-  /* Added to support z-index */
   width: 100%;
   z-index: 1;
-  /* Keep content above canvas */
 }
-
-/* --- Header & Glassmorphism --- */
 
 .top-header {
   position: fixed;
@@ -123,11 +117,6 @@ body {
   z-index: 10;
   pointer-events: none;
   transition: opacity 0.5s ease;
-}
-
-.top-header.header-hidden {
-  opacity: 0;
-  pointer-events: none;
 }
 
 .top-header>div {
@@ -226,7 +215,6 @@ body {
   transition: opacity 0.4s ease 0.2s;
 }
 
-/* Auto-expand on mobile when hero is visible */
 .header-left.name-expanded .hidden-text {
   grid-template-columns: 1fr;
 }
@@ -257,10 +245,6 @@ body {
 .nav-item.active {
   color: var(--text-main);
 }
-
-
-
-/* --- Theme Toggle Animations --- */
 
 .header-divider {
   width: 1px;
@@ -319,26 +303,12 @@ body {
   transform: rotate(90deg) scale(0.5);
 }
 
-/* --- Vertical Flow Navigation --- */
-/* (removed unused .flow-nav, .flow-dot, .dot-label and variants) */
-
-/* --- Reveal Animations --- */
-/* (removed unused .reveal-item, .reveal-visible) */
-
-/* --- Liquid Panel Component --- */
-/* (removed unused .liquid-panel and variants) */
-
-/* --- Physical Glass Slider Components --- */
-/* (removed unused .glass-track, .glass-thumb and variants) */
-
-/* --- Main Content & Layout --- */
 .content-wrapper {
   position: relative;
   z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
   padding: 140px 48px 100px;
-  /* Top padding clears fixed header */
   display: flex;
   flex-direction: column;
   gap: 120px;
@@ -361,11 +331,13 @@ section {
   align-self: flex-start;
 }
 
-
-/* --- Typography --- */
 h1,
 h2,
-h3,
+h3 {
+  font-family: 'Space Grotesk', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+}
+
 p {
   margin: 0;
 }
@@ -412,7 +384,6 @@ p {
   line-height: 1.7;
 }
 
-/* --- Glass Panel Cards --- */
 .glass-panel-card {
   position: relative;
   padding: 48px;
@@ -454,7 +425,6 @@ p {
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
-/* --- Projects Grid --- */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -524,7 +494,6 @@ p {
   color: var(--text-main);
 }
 
-/* --- Floating Project Preview --- */
 .project-preview-container {
   position: fixed;
   top: 0;
@@ -554,7 +523,6 @@ p {
   display: block;
 }
 
-/* --- Hero Actions --- */
 .hero-actions {
   margin-top: 32px;
 }
@@ -579,7 +547,6 @@ p {
   transform: translateY(3px);
 }
 
-/* --- Skills Grid --- */
 .skills-grid {
   display: flex;
   flex-wrap: wrap;
@@ -610,7 +577,6 @@ p {
   100% { transform: translateY(0px); }
 }
 
-/* --- Experience Timeline --- */
 .timeline {
   position: relative;
   margin-top: 16px;
@@ -678,7 +644,6 @@ p {
   margin-bottom: 12px;
 }
 
-/* --- Social Grid --- */
 .social-grid {
   display: flex;
   flex-wrap: wrap;
@@ -703,7 +668,6 @@ p {
   transform: translateY(-4px);
 }
 
-/* --- Footer --- */
 .site-footer {
   position: relative;
   z-index: 2;
@@ -721,7 +685,6 @@ p {
   margin: 4px 0;
 }
 
-/* --- Section Reveal Animations --- */
 .section-hidden {
   opacity: 0;
   transform: translateY(40px);
@@ -734,7 +697,6 @@ p {
   transform: translateY(0);
 }
 
-/* --- Responsive --- */
 @media (max-width: 900px) {
   .hero-title {
     font-size: 3.5rem;
@@ -859,5 +821,3 @@ p {
     height: 20px;
   }
 }
-
-

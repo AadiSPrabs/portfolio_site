@@ -1,0 +1,84 @@
+---
+---
+
+<div class="project-preview-container" id="project-preview">
+  <img class="project-preview-image" src="" alt="Project Preview" decoding="async" />
+</div>
+
+<script>
+const projectPreview = document.getElementById('project-preview');
+const projectPreviewImg = projectPreview?.querySelector('.project-preview-image');
+const projectCards = document.querySelectorAll('.project-card[data-images]');
+const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+function lerp(start, end, amt) {
+  return (1 - amt) * start + amt * end;
+}
+
+if (projectPreview && projectPreviewImg && !isTouchDevice) {
+  let isHovering = false;
+  let currentX = 0;
+  let currentY = 0;
+  let targetX = 0;
+  let targetY = 0;
+  let previewInterval;
+  let currentImageIndex = 0;
+
+  function updatePreviewPosition() {
+    if (!isHovering) return;
+
+    currentX = lerp(currentX, targetX, 0.15);
+    currentY = lerp(currentY, targetY, 0.15);
+
+    projectPreview.style.left = `${currentX}px`;
+    projectPreview.style.top = `${currentY}px`;
+
+    requestAnimationFrame(updatePreviewPosition);
+  }
+
+  projectCards.forEach(card => {
+    card.addEventListener('mouseenter', (e) => {
+      const imgData = card.getAttribute('data-images');
+      if (imgData) {
+        const images = imgData.split(',');
+        currentImageIndex = 0;
+        projectPreviewImg.src = images[currentImageIndex];
+        projectPreview.classList.add('active');
+
+        targetX = e.clientX;
+        targetY = e.clientY;
+        if (!isHovering) {
+          currentX = targetX;
+          currentY = targetY;
+          projectPreview.style.left = `${currentX}px`;
+          projectPreview.style.top = `${currentY}px`;
+        }
+
+        if (images.length > 1) {
+          previewInterval = setInterval(() => {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            projectPreviewImg.src = images[currentImageIndex];
+          }, 1500);
+        }
+
+        isHovering = true;
+        requestAnimationFrame(updatePreviewPosition);
+      }
+    });
+
+    card.addEventListener('mousemove', (e) => {
+      targetX = e.clientX + 20;
+      targetY = e.clientY + 20;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      projectPreview.classList.remove('active');
+      isHovering = false;
+      if (previewInterval) {
+        clearInterval(previewInterval);
+        previewInterval = null;
+      }
+    });
+  });
+}
+</script>

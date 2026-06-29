@@ -1,0 +1,36 @@
+---
+const skills = [
+  { name: 'React / Next.js', delay: '0.1s', icon: 'polygon' },
+  { name: 'TypeScript', delay: '0.8s', icon: 'code' },
+  { name: 'Node.js', delay: '0.4s', icon: 'box' },
+  { name: 'Python', delay: '1.2s', icon: 'shield' },
+  { name: 'Astro', delay: '0.3s', icon: 'zap' },
+  { name: 'Docker', delay: '0.6s', icon: 'monitor' },
+  { name: 'Tailwind CSS', delay: '0.2s', icon: 'palette' },
+  { name: 'Git & Linux', delay: '0.9s', icon: 'git-branch' },
+  { name: 'REST APIs', delay: '0.7s', icon: 'link' },
+];
+const iconPaths = {
+  polygon: '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',
+  code: '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
+  box: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>',
+  shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+  monitor: '<rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>',
+  palette: '<path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>',
+  zap: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/>',
+  'git-branch': '<line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/>',
+  link: '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
+};
+---
+
+<section id="skills">
+  <h2 class="section-title">Skills</h2>
+  <div class="skills-grid">
+    {skills.map((skill) => (
+      <div class="skill-badge glass-box" style={`animation-delay: ${skill.delay}`}>
+        <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={iconPaths[skill.icon]} />
+        {skill.name}
+      </div>
+    ))}
+  </div>
+</section>

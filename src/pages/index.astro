@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CanvasParticles from '../components/CanvasParticles.astro';
+import Header from '../components/Header.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Skills from '../components/Skills.astro';
+import Experience from '../components/Experience.astro';
+import Projects from '../components/Projects.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import FloatingPreview from '../components/FloatingPreview.astro';
+---
+
+<BaseLayout title="Aaditya S Prabhu | Portfolio" description="Aaditya S Prabhu — 2nd-year BTech Computer Science student at Dayananda Sagar University. Full-stack developer building with React, Astro, TypeScript, and Python.">
+  <CanvasParticles />
+  <Header />
+  <main id="app" class="content-wrapper">
+    <Hero />
+    <About />
+    <Skills />
+    <Experience />
+    <Projects />
+    <Contact />
+  </main>
+  <FloatingPreview />
+  <Footer />
+  <ThemeToggle />
+  <ScrollReveal />
+</BaseLayout>

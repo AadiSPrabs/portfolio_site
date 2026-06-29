@@ -1,0 +1,51 @@
+---
+---
+
+<script>
+const revealTargets = document.querySelectorAll('section');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('section-visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+revealTargets.forEach(section => {
+  section.classList.add('section-hidden');
+  revealObserver.observe(section);
+});
+
+const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+if (isTouchDevice) {
+  const heroSection = document.getElementById('home');
+  const headerLeft = document.querySelector('.header-left');
+
+  if (heroSection && headerLeft) {
+    headerLeft.classList.add('name-expanded');
+
+    const nameObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          headerLeft.classList.add('name-expanded');
+        } else {
+          headerLeft.classList.remove('name-expanded');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    nameObserver.observe(heroSection);
+  }
+}
+
+document.querySelectorAll('.nav-item[href^="#"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
