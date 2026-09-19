@@ -1,44 +1,654 @@
 ---
+const projects = [
+  {
+    index: '01',
+    title: 'JellySpot',
+    tagline: 'Yet another music client for Jellyfin.',
+    desc: 'A feature-rich Jellyfin music client built with React, featuring real-time playback, lyrics view, downloads, and a responsive UI with dark mode. Integrates with the Jellyfin API for seamless media streaming.',
+    tags: ['React', 'Jellyfin'],
+    meta: [['TypeScript', 'Language'], ['MIT', 'License'], ['Jellyfin API', 'Integrates']],
+    href: 'https://github.com/AadiSPrabs/JellySpot_React',
+    images: [
+      'https://raw.githubusercontent.com/AadiSPrabs/JellySpot_React/master/screenshots/now_playing.jpeg',
+      'https://raw.githubusercontent.com/AadiSPrabs/JellySpot_React/master/screenshots/home_screen.jpeg',
+      'https://raw.githubusercontent.com/AadiSPrabs/JellySpot_React/master/screenshots/library_screen.jpeg',
+      'https://raw.githubusercontent.com/AadiSPrabs/JellySpot_React/master/screenshots/lyrics_view.jpeg',
+      'https://raw.githubusercontent.com/AadiSPrabs/JellySpot_React/master/screenshots/downloads_screen.jpeg',
+    ],
+  },
+  {
+    index: '02',
+    title: 'UI Gotenberg',
+    tagline: 'Simple self-hosted frontend for the Gotenberg conversion API.',
+    desc: 'A self-hosted web frontend for the Gotenberg document conversion API. Supports batch conversion of documents to PDF, HTML, and images through an intuitive drag-and-drop interface with real-time status tracking.',
+    tags: ['Self-hosted', 'API'],
+    meta: [['JavaScript', 'Language'], ['MIT', 'License'], ['Drag & drop', 'Interface']],
+    href: 'https://github.com/AadiSPrabs/ui_gotenberg',
+    images: ['https://raw.githubusercontent.com/AadiSPrabs/ui_gotenberg/main/ss.PNG'],
+  },
+  {
+    index: '03',
+    title: 'Vyrd',
+    tagline: 'Master the logic of numbers. A tactile, minimalist math puzzle for zen focus.',
+    desc: 'A minimalist puzzle game that turns arithmetic into a moment of zen. Each puzzle presents a 3x3 grid with missing tiles you complete by discovering the hidden mathematical logic — row sums, magic squares, arithmetic and geometric sequences, prime numbers, modulo arithmetic, and digit sums. A procedural engine generates a near-infinite variety of puzzles, backed by a unique Daily Puzzle, three difficulty tiers, and a neomorphic interface designed to make every interaction feel physical.',
+    tags: ['Android', 'Puzzle', 'Neomorphic UI'],
+    meta: [['Android', 'Platform'], ['3 tiers', 'Difficulty'], ['Play Store', 'Published']],
+    href: 'https://play.google.com/store/apps/details?id=com.vyrd.app&hl=en-US',
+    images: [
+      'https://play-lh.googleusercontent.com/COgnUx4qe-UbNs1sNFvXAc56UELBQQEmo2Nv7VMFa2EGa7L5JM8e-eLpDdcWc9WnKHKSW19xeZ43jljN_f2bEw=w1000',
+      'https://play-lh.googleusercontent.com/3IDOp_BUn5fNayOJ7An12smMgeRBTHc7XfnJf5xteGXVrhaO36smJyo8u5PnM5nfHqxnHZFPc75mauLNsPZA=w1000',
+      'https://play-lh.googleusercontent.com/USwYGqsBO5bc6uBI5DD-DCvhSG1rFpP2zjDEeEtj4H6zUIY0UjIBhrDmZERbH1QqN-VSHoZBoUHESwliyWSYqg=w1000',
+      'https://play-lh.googleusercontent.com/vxNlPbezCJKEhSVkKVBdzrn0ymAvmG3Pmh48d4pEOFdlzEa827jWAmDLXYOf_gB3kJnRfHA2sP548OVCapqpJA=w1000',
+    ],
+  },
+];
 ---
 
 <section id="projects">
   <h2 class="section-title">Projects</h2>
-  <div class="projects-grid">
-    <a href="https://github.com/AadiSPrabs/JellySpot_React" target="_blank" rel="noopener noreferrer" class="glass-panel-card project-card" data-images="https://raw.githubusercontent.com/AadiSPrabs/JellySpot_React/master/screenshots/now_playing.jpeg,https://raw.githubusercontent.com/AadiSPrabs/JellySpot_React/master/screenshots/home_screen.jpeg,https://raw.githubusercontent.com/AadiSPrabs/JellySpot_React/master/screenshots/library_screen.jpeg,https://raw.githubusercontent.com/AadiSPrabs/JellySpot_React/master/screenshots/lyrics_view.jpeg,https://raw.githubusercontent.com/AadiSPrabs/JellySpot_React/master/screenshots/downloads_screen.jpeg">
-      <div class="project-title">
-        JellySpot
-        <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-      </div>
-      <p class="project-desc">A feature-rich Jellyfin music client built with React, featuring real-time playback, lyrics view, downloads, and a responsive UI with dark mode. Integrates with the Jellyfin API for seamless media streaming.</p>
-      <div class="project-tags">
-        <span class="project-tag">React</span>
-        <span class="project-tag">Jellyfin</span>
-      </div>
-    </a>
 
-    <a href="https://github.com/AadiSPrabs/ui_gotenberg" target="_blank" rel="noopener noreferrer" class="glass-panel-card project-card" data-images="https://raw.githubusercontent.com/AadiSPrabs/ui_gotenberg/main/ss.PNG">
-      <div class="project-title">
-        UI Gotenberg
-        <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-      </div>
-      <p class="project-desc">A self-hosted web frontend for the Gotenberg document conversion API. Supports batch conversion of documents to PDF, HTML, and images through an intuitive drag-and-drop interface with real-time status tracking.</p>
-      <div class="project-tags">
-        <span class="project-tag">Self-hosted</span>
-        <span class="project-tag">API</span>
-      </div>
-    </a>
+  <div class="rail-viewport">
+    <ul class="project-rail" role="list">
+      {projects.map((p) => (
+        <li class="project-slide">
+          <article class="project-card">
+            <div class="project-info">
+              <span class="project-index" aria-hidden="true">{p.index}</span>
+              <h3 class="project-title">{p.title}</h3>
+              <p class="project-tagline">{p.tagline}</p>
 
-    <a href="https://play.google.com/store/apps/details?id=com.vyrd.app&hl=en-US" target="_blank" rel="noopener noreferrer" class="glass-panel-card project-card">
-      <div class="project-title">
-        Vyrd
-        <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-      </div>
-      <p class="project-desc">A minimalist math puzzle game for Android with a custom puzzle engine, increasing difficulty progression, and sleek dark mode UI. Features touch-optimized interactions and a unique scoring system. Published on the Google Play Store.</p>
-      <div class="project-tags">
-        <span class="project-tag">Mobile App</span>
-        <span class="project-tag">Game Design</span>
-        <span class="project-tag">React Native</span>
-      </div>
-    </a>
+              <div class="project-reveal">
+                <p class="project-desc">{p.desc}</p>
+                <dl class="project-meta">
+                  {p.meta.map(([value, label]) => (
+                    <div class="project-meta-item">
+                      <dt>{label}</dt>
+                      <dd>{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <div class="project-tags">
+                  {p.tags.map((t) => <span class="project-tag">{t}</span>)}
+                </div>
+              </div>
+
+              <a class="project-link" href={p.href} target="_blank" rel="noopener noreferrer">
+                <span>View project</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17l9.2-9.2M17 17V7H7" /></svg>
+              </a>
+            </div>
+
+            <div class="project-media">
+              {p.images.length
+                ? p.images.map((src, i) => (
+                    <img
+                      src={src}
+                      alt={`${p.title} screenshot ${i + 1}`}
+                      /* Lazy images inside a stacked (never-scrolled) rail may never
+                         load, leaving the panel blank. Only the first shot loads
+                         eagerly; JS promotes the active slide's images on demand. */
+                      loading={p.index === '01' && i === 0 ? 'eager' : 'lazy'}
+                      decoding="async"
+                      class={i === 0 ? 'is-shown' : ''}
+                    />
+                  ))
+                : <div class="project-media-empty" aria-hidden="true">{p.index}</div>}
+            </div>
+          </article>
+        </li>
+      ))}
+    </ul>
+
+    <div class="rail-fade rail-fade-start" aria-hidden="true"></div>
+    <div class="rail-fade rail-fade-end" aria-hidden="true"></div>
+
+    <button class="rail-nav rail-nav-prev" type="button" aria-label="Previous project">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
+    </button>
+    <button class="rail-nav rail-nav-next" type="button" aria-label="Next project">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+    </button>
   </div>
 </section>
+
+<style>
+  .rail-viewport {
+    position: relative;
+    /* Bleed out of the content column without using 100vw, which overshoots by
+       the scrollbar width and makes the page scroll sideways. */
+    margin-inline: calc(var(--rail-gutter) * -1);
+    max-inline-size: calc(100% + var(--rail-gutter) * 2);
+  }
+
+  .project-rail {
+    /* All slides share one grid cell and are stacked, so switching is a pure
+       animation with no scroll involved. Scroll-snap + a clip animation fought
+       each other: the rail moved while the wipe also moved the card. */
+    display: grid;
+    inline-size: 100%;
+    margin: 0;
+    list-style: none;
+    padding-block: clamp(0.5rem, 1.5vw, 1rem);
+    padding-inline: var(--rail-gutter);
+    /* No overflow clipping: the fixed canvas paints the cross grid behind this
+       section, and a clip edge here sliced the crosses into half-glyphs down
+       both sides. Nothing scrolls any more, so there is nothing to clip. */
+  }
+
+  /* Softens both ends so cards dissolve into the page instead of hard-cutting. */
+  .rail-fade {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    inline-size: clamp(2rem, 6vw, 5rem);
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .rail-fade-start {
+    left: 0;
+    background: linear-gradient(to right, var(--canvas-bg), transparent);
+  }
+
+  .rail-fade-end {
+    right: 0;
+    background: linear-gradient(to left, var(--canvas-bg), transparent);
+  }
+
+  .project-slide {
+    /* Every slide occupies the same cell, so the rail's height is the tallest
+       card and each card stretches to it -- identical heights across projects. */
+    grid-area: 1 / 1;
+    min-inline-size: 0;
+    display: flex;
+  }
+
+  /* The handoff is one motion, not two fades: each slide carries its own cover
+     panel. The outgoing card's cover sweeps shut, and the incoming card's cover
+     sweeps open in the same direction, so the pair reads as a single wipe
+     travelling across the card. */
+  .project-slide .project-card {
+    transition: opacity 0.2s linear 0.5s;
+  }
+
+  .project-slide .project-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    border-radius: inherit;
+    background: var(--canvas-bg);
+    transition: transform 0.7s var(--ease-out-quart);
+    pointer-events: none;
+  }
+
+  /* Outgoing: cover closes, and opacity only drops after the cover has swept
+     over it (0.5s delay) so the wipe is what hides the card, not a hard fade. */
+  .project-slide:not(.is-current) .project-card {
+    opacity: 0;
+    transition: opacity 0.2s linear 0.5s;
+    pointer-events: none;
+  }
+
+  /* Incoming shows at once; its cover is already open and sweeps away. */
+  .project-slide.is-current .project-card {
+    opacity: 1;
+    transition: opacity 0s linear 0s;
+  }
+
+  /* Next (forward): outgoing cover closes from the left edge, incoming cover
+     opens toward the right edge -- content travels right-to-left. */
+  .project-rail[data-dir="next"] .project-slide:not(.is-current) .project-card::after {
+    transform-origin: left center;
+  }
+
+  .project-rail[data-dir="next"] .project-slide.is-current .project-card::after {
+    transform-origin: right center;
+  }
+
+  /* Prev (backward): mirrored, so content travels left-to-right. */
+  .project-rail[data-dir="prev"] .project-slide:not(.is-current) .project-card::after {
+    transform-origin: right center;
+  }
+
+  .project-rail[data-dir="prev"] .project-slide.is-current .project-card::after {
+    transform-origin: left center;
+  }
+
+  /* Incoming: cover open, revealed by the wipe rather than a plain fade. */
+  .project-slide.is-current .project-card::after {
+    transform: scaleX(0);
+  }
+
+  /* Outgoing: cover fully closed, so the card is hidden by the cover. */
+  .project-slide:not(.is-current) .project-card::after {
+    transform: scaleX(1);
+  }
+
+  /* No JS: never hide anything. */
+  .project-rail:not([data-enhanced]) .project-card {
+    opacity: 1;
+  }
+
+  .project-rail:not([data-enhanced]) .project-card::after {
+    display: none;
+  }
+
+  /* Without JS only the first slide is in flow, so the rest don't stack on it. */
+  .project-rail:not([data-enhanced]) .project-slide:not(:first-child) {
+    display: none;
+  }
+
+  .project-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+    gap: clamp(1rem, 3vw, 2.5rem);
+    align-items: center;
+    /* flex:1 makes every card fill the shared grid cell, so all three projects
+       render at the same height regardless of description length. */
+    flex: 1;
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    border: 1px solid var(--panel-border);
+    border-radius: 1.5rem;
+    /* Matches .glass-panel-card so this card reads as the same surface as the
+       About, Contact, and Experience cards. */
+    background: var(--panel-bg);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    backdrop-filter: blur(20px) saturate(150%);
+    box-shadow: var(--panel-shadow);
+  }
+
+  .project-info {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.5rem, 1.4vw, 0.9rem);
+    min-inline-size: 0;
+  }
+
+  .project-index {
+    font-family: 'Archivo', 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+    opacity: 0.6;
+  }
+
+  .project-title {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--text-main);
+    text-wrap: balance;
+  }
+
+  .project-tagline {
+    font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+    color: var(--text-main);
+    opacity: 0.85;
+    text-wrap: pretty;
+  }
+
+  /* The reveal is hidden with opacity + a small shift, NOT by collapsing its
+     height. Collapsing changed the card's intrinsic height, so the shared grid
+     cell (and the whole rail) resized on every switch: 459 -> 514 -> 611px.
+     Reserving the space keeps all three cards identical and the section still. */
+  .project-reveal {
+    opacity: 0;
+    translate: 0 -0.35rem;
+    transition: opacity 0.35s ease, translate 0.45s var(--ease-out-quart);
+  }
+
+  .project-slide.is-current .project-reveal {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  /* Without JS nothing sets .is-current, so keep the first card readable. */
+  .project-slide:first-child .project-reveal {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  .project-rail[data-enhanced] .project-slide:first-child:not(.is-current) .project-reveal {
+    opacity: 0;
+    translate: 0 -0.35rem;
+  }
+
+  .project-desc {
+    display: block;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-inline-size: 60ch;
+    text-wrap: pretty;
+  }
+
+  .project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-block: 1rem 0;
+    min-inline-size: 0;
+  }
+
+  .project-meta-item dt {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    opacity: 0.65;
+  }
+
+  .project-meta-item dd {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-main);
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-block-start: 1rem;
+    min-inline-size: 0;
+  }
+
+  .project-tag {
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--glass-border);
+    border-radius: 99px;
+    background: var(--glass-inner);
+    color: var(--text-muted);
+    white-space: nowrap;
+    max-inline-size: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    align-self: flex-start;
+    margin-block-start: 0.35rem;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-main);
+    text-decoration: none;
+    border: 1px solid var(--glass-border);
+    border-radius: 99px;
+    background: var(--glass-inner);
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s var(--ease-out-quart);
+  }
+
+  .project-link svg {
+    inline-size: 1rem;
+    block-size: 1rem;
+  }
+
+  .project-link:hover {
+    background: var(--glass-bg-hover);
+    border-color: var(--text-main);
+  }
+
+  .project-link:focus-visible {
+    outline: 2px solid var(--text-main);
+    outline-offset: 3px;
+  }
+
+  /* --- media: the auto-rotating screenshot stack --- */
+  .project-media {
+    position: relative;
+    display: grid;
+    place-items: center;
+    /* Definite height, not 100%: a percentage here feeds the grid cell that sizes
+       the card, so the tall portrait shot inflated everything to ~1140px. */
+    block-size: clamp(16rem, 30vw, 22rem);
+    inline-size: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+  }
+
+  /* Every source shot is a phone capture (720x1600) or a wide desktop grab
+     (1918x930). object-fit:cover cropped both badly, so the shot is contained and
+     a blurred copy of the same image fills the leftover space behind it. */
+  .project-media img {
+    grid-area: 1 / 1;
+    /* Percentage max-sizes don't resolve against the grid area, so the tall
+       portrait shot escaped the panel. Bounding both axes in the unit that
+       always resolves keeps it inside. */
+    inline-size: 100%;
+    block-size: 100%;
+    min-block-size: 0;
+    min-inline-size: 0;
+    object-fit: contain;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.8s var(--ease-out-quart);
+  }
+
+  .project-media img.is-shown {
+    opacity: 1;
+  }
+
+  /* The blurred backdrop sits behind and is scaled up to bleed past the edges,
+     so no hard border shows through the blur. */
+  .project-media::before {
+    content: "";
+    grid-area: 1 / 1;
+    inline-size: 100%;
+    block-size: 100%;
+    background-image: var(--media-src);
+    background-size: cover;
+    background-position: center;
+    filter: blur(28px) saturate(160%) brightness(0.7);
+    transform: scale(1.15);
+    z-index: 0;
+    opacity: 0.55;
+  }
+  .project-media-empty {
+    grid-area: 1 / 1;
+    display: grid;
+    place-items: center;
+    inline-size: 100%;
+    block-size: 100%;
+    font-family: 'Archivo', 'DM Sans', sans-serif;
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 700;
+    color: var(--text-muted);
+    opacity: 0.18;
+  }
+
+  /* --- nav arrows --- */
+  .rail-nav {
+    position: absolute;
+    top: 50%;
+    z-index: 3;
+    display: grid;
+    place-items: center;
+    inline-size: clamp(2.5rem, 4vw, 3rem);
+    block-size: clamp(2.5rem, 4vw, 3rem);
+    padding: 0;
+    transform: translateY(-50%);
+    color: var(--text-main);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    backdrop-filter: blur(12px) saturate(150%);
+    box-shadow: 0 4px 20px var(--glass-shadow);
+    transition: background 0.3s ease, border-color 0.3s ease, opacity 0.3s ease,
+                transform 0.3s var(--ease-out-quart);
+  }
+
+  .rail-nav svg {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+  }
+
+  .rail-nav:hover {
+    background: var(--glass-bg-hover);
+    border-color: var(--text-main);
+  }
+
+  .rail-nav:focus-visible {
+    outline: 2px solid var(--text-main);
+    outline-offset: 3px;
+  }
+
+  .rail-nav:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  .rail-nav-prev {
+    left: clamp(0.5rem, 1.5vw, 1rem);
+  }
+
+  .rail-nav-next {
+    right: clamp(0.5rem, 1.5vw, 1rem);
+  }
+
+  @media (max-width: 60rem) {
+    .project-card {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.25rem;
+    }
+
+    /* Stacked on narrow screens: text first, media under it. */
+    .project-media {
+      order: 2;
+      min-block-size: 14rem;
+    }
+
+    .project-info {
+      order: 1;
+    }
+
+    /* The card is tall when stacked, so a vertically-centred arrow lands on the
+       tags. Pin both to the media panel instead, which is a known-height block. */
+    .rail-nav {
+      top: auto;
+      bottom: clamp(4.5rem, 22vw, 9rem);
+      transform: none;
+    }
+
+    .rail-nav-prev {
+      left: clamp(0.5rem, 3vw, 1.25rem);
+    }
+
+    .rail-nav-next {
+      right: clamp(0.5rem, 3vw, 1.25rem);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-slide,
+    .project-reveal,
+    .project-media img,
+    .rail-fade {
+      transition-duration: 0.01ms;
+    }
+  }
+</style>
+
+<script>
+  const viewport = document.querySelector<HTMLElement>('.rail-viewport');
+  const rail = viewport?.querySelector<HTMLElement>('.project-rail');
+  const slides = Array.from(rail?.querySelectorAll<HTMLElement>('.project-slide') ?? []);
+  const prevBtn = viewport?.querySelector<HTMLButtonElement>('.rail-nav-prev');
+  const nextBtn = viewport?.querySelector<HTMLButtonElement>('.rail-nav-next');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (viewport && rail && slides.length) {
+    // Tells CSS that JS owns the state; without it every slide stays visible so
+    // the section is still readable with scripting off.
+    rail.dataset.enhanced = 'true';
+
+    let current = 0;
+    let imageTimer: number | undefined;
+
+    // Advance the visible slide's screenshots on a loop.
+    const startImageRotation = () => {
+      window.clearInterval(imageTimer);
+
+      const allImgs = Array.from(rail.querySelectorAll<HTMLImageElement>('.project-media img'));
+      const imgs = allImgs.filter((img) => img.closest('.project-slide') === slides[current]);
+
+      // Reset every slide, not just this one: a leftover .is-shown on a hidden
+      // slide would paint through during the handoff.
+      const showImage = (n: number) => {
+        allImgs.forEach((img) => img.classList.remove('is-shown'));
+        const picked = imgs[n];
+        if (!picked) return;
+        picked.classList.add('is-shown');
+        // Backs the blurred backdrop with the same shot.
+        picked.closest<HTMLElement>('.project-media')?.style.setProperty(
+          '--media-src',
+          `url("${picked.currentSrc || picked.src}")`
+        );
+      };
+
+      // Promote this slide's images out of lazy: a hidden slide never intersects
+      // the viewport, so the browser would otherwise never fetch them.
+      imgs.forEach((img) => { img.loading = 'eager'; });
+
+      if (imgs.length < 2 || reduceMotion.matches) {
+        showImage(0);
+        return;
+      }
+
+      let i = 0;
+      showImage(0);
+      imageTimer = window.setInterval(() => {
+        i = (i + 1) % imgs.length;
+        showImage(i);
+      }, 3200);
+    };
+
+    const syncArrows = () => {
+      if (prevBtn) prevBtn.disabled = current === 0;
+      if (nextBtn) nextBtn.disabled = current === slides.length - 1;
+    };
+
+    const show = (i: number) => {
+      const next = Math.max(0, Math.min(slides.length - 1, i));
+      if (next === current) return;
+      // Drives the wipe direction in CSS so next and prev read differently.
+      rail.dataset.dir = next > current ? 'next' : 'prev';
+      current = next;
+      slides.forEach((slide, k) => slide.classList.toggle('is-current', k === current));
+      startImageRotation();
+      syncArrows();
+    };
+
+    prevBtn?.addEventListener('click', () => show(current - 1));
+    nextBtn?.addEventListener('click', () => show(current + 1));
+
+    rail.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); show(current - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(current + 1); }
+    });
+
+    // Pause the slideshow when the section scrolls away.
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) startImageRotation();
+      else window.clearInterval(imageTimer);
+    }, { threshold: 0.2 }).observe(rail);
+
+    // Initial state: no wipe, just mark slide 1 and start its rotation.
+    rail.dataset.dir = 'next';
+    slides.forEach((slide, k) => slide.classList.toggle('is-current', k === 0));
+    startImageRotation();
+    syncArrows();
+  }
+</script>
