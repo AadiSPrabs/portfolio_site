@@ -14,13 +14,16 @@ const spacing = 40;
 const radius = 150;
 const lerpFactor = 0.1;
 
-let isPaused = false;
+// Cap DPR: a 3x canvas costs 2.25x the fill of 2x for no visible gain on a
+// low-contrast grid, and it is the main reason phones stutter here.
+const maxDpr = 2;
+let dpr = 1;
 
-document.addEventListener('visibilitychange', () => {
-  isPaused = document.hidden;
-});
+let isPaused = false;
+let rafId = null;
 
 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 let autoCursor = { x: 0, y: 0, time: 0 };
 
@@ -65,19 +68,23 @@ function updateAutoCursor() {
 function resize() {
   width = document.documentElement.clientWidth || window.innerWidth;
   height = document.documentElement.clientHeight || window.innerHeight;
+
+  dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
+
   canvas.style.width = width + 'px';
   canvas.style.height = height + 'px';
-  canvas.width = width * window.devicePixelRatio;
-  canvas.height = height * window.devicePixelRatio;
-  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  canvas.width = Math.round(width * dpr);
+  canvas.height = Math.round(height * dpr);
+
+  // setTransform, not scale(): scale() compounds on every resize, so the grid
+  // would drift and grow after each mobile URL-bar collapse.
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
   initGrid();
 }
 
 function initGrid() {
   points = [];
-
-  const offsetX = 0;
-  const offsetY = 0;
 
   const cols = Math.ceil(width / spacing) + 2;
   const rows = Math.ceil(height / spacing) + 2;
@@ -85,11 +92,10 @@ function initGrid() {
   for (let r = -2; r <= rows; r++) {
     for (let c = -2; c <= cols; c++) {
       points.push({
-        x: offsetX + c * spacing,
-        y: offsetY + r * spacing,
+        x: c * spacing,
+        y: r * spacing,
         rotation: 0,
-        opacity: 0.2,
-        glow: 0
+        opacity: 0.2
       });
     }
   }
@@ -99,70 +105,146 @@ function lerp(start, end, amt) {
   return (1 - amt) * start + amt * end;
 }
 
-function drawCross(x, y, size, rotation, opacity, glow, colorRgb) {
-  ctx.save();
-  ctx.translate(x, y);
-  ctx.rotate(rotation);
+// One cross drawing routine, used for both the live canvas and the static layer.
+function drawCross(c, x, y, size, rotation, opacity, colorRgb) {
+  c.save();
+  c.translate(x, y);
+  if (rotation !== 0) c.rotate(rotation);
 
-  if (glow > 0) {
-    ctx.shadowBlur = glow;
-    ctx.shadowColor = `rgba(${colorRgb}, ${opacity})`;
-  } else {
-    ctx.shadowBlur = 0;
-  }
+  c.strokeStyle = `rgba(${colorRgb}, ${opacity})`;
+  c.lineWidth = 1.5;
+  c.beginPath();
 
-  ctx.strokeStyle = `rgba(${colorRgb}, ${opacity})`;
-  ctx.lineWidth = 1.5;
-  ctx.beginPath();
+  c.moveTo(0, -size / 2);
+  c.lineTo(0, size / 2);
 
-  ctx.moveTo(0, -size / 2);
-  ctx.lineTo(0, size / 2);
+  c.moveTo(-size / 2, 0);
+  c.lineTo(size / 2, 0);
 
-  ctx.moveTo(-size / 2, 0);
-  ctx.lineTo(size / 2, 0);
-
-  ctx.stroke();
-  ctx.restore();
+  c.stroke();
+  c.restore();
 }
 
-function update() {
-  if (isPaused) {
-    requestAnimationFrame(update);
-    return;
-  }
-  updateAutoCursor();
-  ctx.clearRect(0, 0, width, height);
+// Only the crosses near the cursor react, so only they need a per-frame redraw.
+// Everything else is a static grid and gets painted once into an offscreen layer.
+let staticLayer = null;
+
+function buildStaticLayer() {
+  staticLayer = document.createElement('canvas');
+  staticLayer.width = canvas.width;
+  staticLayer.height = canvas.height;
+
+  const sctx = staticLayer.getContext('2d');
+  sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
   const theme = document.documentElement.getAttribute('data-theme');
   const colorRgb = theme === 'light' ? '0, 0, 0' : '255, 255, 255';
 
   points.forEach(p => {
+    p.rotation = 0;
+    p.opacity = 0.2;
+    drawCross(sctx, p.x, p.y, 12, 0, 0.2, colorRgb);
+  });
+}
+
+function update() {
+  rafId = null;
+  if (isPaused) return;
+
+  updateAutoCursor();
+
+  const theme = document.documentElement.getAttribute('data-theme');
+  const colorRgb = theme === 'light' ? '0, 0, 0' : '255, 255, 255';
+
+  // Static grid first, then only the crosses the cursor actually affects.
+  if (staticLayer) {
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(staticLayer, 0, 0);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  } else {
+    ctx.clearRect(0, 0, width, height);
+  }
+
+  const r2 = radius * radius;
+
+  for (let i = 0; i < points.length; i++) {
+    const p = points[i];
     const dx = mouse.x - p.x;
     const dy = mouse.y - p.y;
-    const dist = Math.sqrt(dx * dx + dy * dy);
+    const d2 = dx * dx + dy * dy;
 
-    let targetRotation = 0;
-    let targetOpacity = 0.2;
-    let targetGlow = 0;
+    // Points outside the radius never change, so they cost nothing per frame.
+    if (d2 >= r2) continue;
 
-    if (dist < radius) {
-      const factor = 1 - (dist / radius);
-      const angleToMouse = Math.atan2(dy, dx);
-      targetRotation = angleToMouse + (Math.PI / 4) * factor;
-      targetOpacity = 0.2 + 0.8 * factor;
-      targetGlow = 15 * factor;
-    }
+    const dist = Math.sqrt(d2);
+    const factor = 1 - (dist / radius);
+    const angleToMouse = Math.atan2(dy, dx);
+    const targetRotation = angleToMouse + (Math.PI / 4) * factor;
+    const targetOpacity = 0.2 + 0.8 * factor;
 
     p.rotation = lerp(p.rotation, targetRotation, lerpFactor);
     p.opacity = lerp(p.opacity, targetOpacity, lerpFactor);
-    p.glow = lerp(p.glow, targetGlow, lerpFactor);
 
-    drawCross(p.x, p.y, 12, p.rotation, p.opacity, p.glow, colorRgb);
-  });
+    drawCross(ctx, p.x, p.y, 12, p.rotation, p.opacity, colorRgb);
+  }
 
-  requestAnimationFrame(update);
+  schedule();
 }
 
-window.addEventListener('resize', resize);
+function schedule() {
+  if (rafId === null && !isPaused) {
+    rafId = requestAnimationFrame(update);
+  }
+}
+
+function render() {
+  if (document.hidden) return;
+  schedule();
+}
+
+// Stop the loop for real when hidden; the old version kept queueing frames.
+document.addEventListener('visibilitychange', () => {
+  isPaused = document.hidden;
+  if (!isPaused) schedule();
+});
+
+if (reduceMotion.matches) {
+  isPaused = true;
+}
+
+reduceMotion.addEventListener('change', (e) => {
+  isPaused = e.matches;
+  if (!isPaused) schedule();
+});
+
+// Debounced: mobile fires resize constantly as the URL bar collapses, and each
+// one rebuilt the whole grid synchronously mid-scroll.
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    resize();
+    buildStaticLayer();
+    if (reduceMotion.matches) {
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (staticLayer) ctx.drawImage(staticLayer, 0, 0);
+    }
+  }, 150);
+});
+
+// Rebuild the static layer whenever the theme flips, so the grid colour follows.
+new MutationObserver(() => {
+  buildStaticLayer();
+  if (reduceMotion.matches) {
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (staticLayer) ctx.drawImage(staticLayer, 0, 0);
+  }
+}).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
 resize();
-update();
+buildStaticLayer();
+render();
 </script>
